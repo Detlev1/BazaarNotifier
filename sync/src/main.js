@@ -3,10 +3,13 @@
  */
 
 import fs from "fs"
-import "dotenv/config"
+//import "dotenv/config"
 
 import conversions from "./mode/conversions.js"
 import crafting from "./mode/crafting.js"
+import { exit } from "process";
+
+let access_token;
 
 function jsonToAscii(jsonText) {
   let s = "";
@@ -33,19 +36,34 @@ function jsonToAscii(jsonText) {
 }
 
 const run = async (autoUpdate = false) => {
-  let resources = JSON.parse(
-      fs.readFileSync("../resources.json"));
+  let resources
+  let filePath;
+  try{
+    resources = JSON.parse(fs.readFileSync("../resources.json"));
+    filePath = "../resources.json"
+  }catch{
+    resources = JSON.parse(fs.readFileSync("resources.json"))
+    filePath = "resources.json"
+  }
+  
 
   await conversions.update(resources, true)
-  await crafting.update(resources)
+  await conversions.full_check(resources, access_token, true)
+  await crafting.update(resources, access_token, true)
 
   if (autoUpdate) {
-    fs.writeFile("../resources.json",
+    fs.writeFile(filePath,
         jsonToAscii(JSON.stringify(resources, null, '\t')), () => {
         });
   } else {
     console.log(jsonToAscii(JSON.stringify(resources, null, '\t')))
   }
+}
+
+if (process.argv.length > 2) {
+  access_token = process.argv[2]
+}else{
+  access_token = ""
 }
 
 run(true);

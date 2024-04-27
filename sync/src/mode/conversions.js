@@ -51,6 +51,28 @@ const convertItemName = (item) => {
   return filtered;
 }
 
+const convertName = (name) => {
+  if (name.match(/^ENCHANTMENT_(ULTIMATE_)?(.*)_(\d+)$/)) {
+    return name.replace(/^ENCHANTMENT_(ULTIMATE_)?(.*)_(\d+)$/, "$1$2;$3");
+  }
+
+  if (name === "INK_SACK:3") name = "INK_SACK-3";
+  else if (name === "BAZAAR_COOKIE") name = "BOOSTER_COOKIE"
+  else if (name.includes(":")) name = name.replace(":", "-")
+
+
+  return name;
+}
+
+const removeColorCode = (str) => {
+  let current = str;
+  while (current.includes('§')){
+    const index = current.indexOf('§');
+    current = current.slice(0, index) + current.slice(index + 2);
+  }
+  return current;
+};
+
 export default {
   update: async (resources, log = false) => {
     let bazaarData = (await axios.get(
@@ -85,6 +107,41 @@ export default {
         if (!(item in flaggedItem)) {
           console.log(item);
         }
+      }
+    }
+  },
+
+
+  full_check: async (resources, access_token,  log=false) => {
+    if(access_token !== ""){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
+    }
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+    if(log){
+      console.log("starting complete item name check")
+    }
+    let bazaarData = (await axios.get(
+      "https://api.hypixel.net/skyblock/bazaar")).data.products;
+
+    let keys = Object.keys(bazaarData);
+    for (let name of keys){
+      if (name === "ENCHANTED_CARROT_ON_A_STICK" || name === "BAZAAR_COOKIE" || name.startsWith("ENCHANTMENT")){
+        continue;
+      }
+      let template = `https://raw.githubusercontent.com/NotEnoughUpdates/NotEnoughUpdates-REPO/master/items/${convertName(name)}.json`
+      if(access_token === ""){
+        await delay(50);
+      }
+      let itemName = String((await axios.get(
+         template)).data.displayname);
+      itemName = removeColorCode(itemName)
+      if(resources.bazaarConversions[name] != itemName){
+        if(log){
+          console.log("-------------------------")
+          console.log("Changed existing item name from " + resources.bazaarConversions[name] + " to " + itemName)
+          console.log("-------------------------")
+        }
+        resources.bazaarConversions[name] = itemName
       }
     }
   }
