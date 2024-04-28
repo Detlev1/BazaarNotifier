@@ -1,7 +1,7 @@
 name: Check for new resources
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   run_update:
