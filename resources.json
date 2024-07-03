@@ -1348,7 +1348,21 @@
 		"FINE_PERIDOT_GEM": "\u2618 Fine Peridot Gemstone",
 		"PET_CAKE": "Pet Cake",
 		"REFINED_DARK_CACAO_TRUFFLE": "Refined Dark Cacao Truffle",
-		"SUPREME_CHOCOLATE_BAR": "Supreme Chocolate Bar"
+		"SUPREME_CHOCOLATE_BAR": "Supreme Chocolate Bar",
+		"FRESHLY_MINTED_COINS": "Freshly-Minted Coins",
+		"PARTY_GIFT": "Party Gift",
+		"WINTER_FRAGMENT": "Winter Fragment",
+		"GLOSSY_GEMSTONE": "Glossy Gemstone",
+		"GLEAMING_CRYSTAL": "Gleaming Crystal",
+		"DIVAN_POWDER_COATING": "Divan's Powder Coating",
+		"BLOOD_SOAKED_COINS": "Blood-Soaked Coins",
+		"FINE_FLOUR": "Fine Flour",
+		"AVARICIOUS_CHALICE": "Avaricious Chalice",
+		"ENCHANTMENT_TOXOPHILITE_1": "Toxophilite I",
+		"GOLDEN_BOUNTY": "Golden Bounty",
+		"BLOOD_STAINED_COINS": "Blood-Stained Coins",
+		"DARK_QUEENS_SOUL_DROP": "Dark Queen's Soul",
+		"GOLDEN_FRAGMENT": "Golden Fragment"
 	},
 	"enchantCraftingList": {
 		"normal": {},
@@ -3364,6 +3378,24 @@
 					1
 				],
 				"collection": "NONE"
+			},
+			"BLOOD_SOAKED_COINS": {
+				"material": [
+					"HEMOGLASS",
+					32,
+					"BLOOD_STAINED_COINS",
+					1
+				],
+				"collection": "NONE"
+			},
+			"BLOOD_STAINED_COINS": {
+				"material": [
+					"HEMOGLASS",
+					4,
+					"FRESHLY_MINTED_COINS",
+					1
+				],
+				"collection": "NONE"
 			}
 		}
 	},
@@ -3754,6 +3786,17 @@
 		"ARACHNE_FANG",
 		"PET_CAKE",
 		"REFINED_DARK_CACAO_TRUFFLE",
-		"SUPREME_CHOCOLATE_BAR"
+		"SUPREME_CHOCOLATE_BAR",
+		"FRESHLY_MINTED_COINS",
+		"PARTY_GIFT",
+		"WINTER_FRAGMENT",
+		"GLOSSY_GEMSTONE",
+		"GLEAMING_CRYSTAL",
+		"DIVAN_POWDER_COATING",
+		"FINE_FLOUR",
+		"AVARICIOUS_CHALICE",
+		"GOLDEN_BOUNTY",
+		"DARK_QUEENS_SOUL_DROP",
+		"GOLDEN_FRAGMENT"
 	]
 }

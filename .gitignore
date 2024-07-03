@@ -1,2 +1,6 @@
 .DS_STORE
 .idea
+.gradle
+.vscode
+build
+run
