@@ -43,8 +43,8 @@ jobs:
 
       - name: Create or update branch
         run: |
-          git config user.name "${{ secrets.GIT_USER_NAME }}"
-          git config user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config user.name "${{ secrets.NAME }}"
+          git config user.email "${{ secrets.EMAIL }}"
           git add resources.json
           git commit -m "Automated resource updates"
           git push -u origin resources-automated --force
