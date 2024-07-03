@@ -46,7 +46,7 @@ jobs:
           git config user.name "${{ secrets.NAME }}"
           git config user.email "${{ secrets.EMAIL }}"
           git add resources.json
-          git commit -m "Automated resource updates"
+          git commit -m "Automated resource updates" || echo "No changes to commit"
           git push -u origin resources-automated --force
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
