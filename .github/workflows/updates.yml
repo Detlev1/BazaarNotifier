@@ -55,6 +55,6 @@ jobs:
       - name: Create PR
         if: steps.check_pr.outputs.PR_EXISTS == '0'
         run: |
-          gh pr create -B resources -H resources-automated --title 'Automated Resource update'
+          gh pr create -B resources -H resources-automated --title 'Automated Resource update' --body 'Automated Resource update'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
